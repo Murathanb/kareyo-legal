@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kareyo Gizlilik Politikası</title>
+<meta name="description" content="Kareyo'nun gizlilik politikası — tüm veriler yalnızca cihazınızda kalır." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --text: #161b22;
+    --muted: #5b6472;
+    --faint: #8891a0;
+    --border: #e3e6eb;
+    --accent: #2456b8;
+    --accent-soft: #e8eefc;
+    --accent-ink: #17376e;
+    --ring-track: #d7deea;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0e14;
+      --surface: #11151e;
+      --text: #eceef2;
+      --muted: #9aa3b2;
+      --faint: #6b7280;
+      --border: #232937;
+      --accent: #6c93e8;
+      --accent-soft: #1a2740;
+      --accent-ink: #cddcff;
+      --ring-track: #2a3242;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0b0e14;
+    --surface: #11151e;
+    --text: #eceef2;
+    --muted: #9aa3b2;
+    --faint: #6b7280;
+    --border: #232937;
+    --accent: #6c93e8;
+    --accent-soft: #1a2740;
+    --accent-ink: #cddcff;
+    --ring-track: #2a3242;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { background: var(--bg); }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  header.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 44px;
+  }
+
+  .mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    position: relative;
+    flex: none;
+  }
+  .mark::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--surface);
+  }
+  .mark::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: var(--accent-ink);
+    opacity: 0.85;
+  }
+
+  .brand-row { display: flex; align-items: center; gap: 14px; }
+  .brand-name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--faint); }
+
+  .lang-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+    background: var(--surface);
+  }
+  .lang-toggle button {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .lede {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 60ch;
+  }
+
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 40px 0 48px;
+  }
+  nav.toc .toc-label {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--faint);
+    margin-bottom: 10px;
+  }
+  nav.toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 20px;
+  }
+  nav.toc li a {
+    display: block;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    padding: 3px 0;
+  }
+  nav.toc li a span { color: var(--faint); font-weight: 500; margin-right: 8px; }
+  nav.toc li a:hover { color: var(--accent); }
+
+  section.clause {
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 24px;
+  }
+  section.clause:first-of-type { border-top: none; }
+
+  h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  section.clause p { margin: 0 0 14px; color: var(--text); }
+  section.clause p.muted-note { color: var(--muted); font-size: 15.5px; }
+  section.clause p:last-child { margin-bottom: 0; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 18px; }
+  .badge {
+    font-family: 'Sora', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-ink);
+  }
+
+  ul.plain { margin: 0 0 14px; padding-left: 20px; }
+  ul.plain li { margin-bottom: 8px; }
+  ul.plain li:last-child { margin-bottom: 0; }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Sora', sans-serif;
+    font-size: 14.5px;
+    margin: 8px 0 18px;
+    overflow-x: auto;
+    display: block;
+  }
+  table.data-table thead { display: table-header-group; }
+  table.data-table tbody { display: table-row-group; }
+  table.data-table tr { display: table-row; }
+  table.data-table th, table.data-table td {
+    display: table-cell;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.data-table th {
+    font-weight: 700;
+    color: var(--faint);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  table.data-table td { color: var(--text); font-family: 'Source Serif 4', serif; font-size: 15.5px; }
+  table.data-table td.status { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13px; }
+  table.data-table td.status.no { color: var(--accent); }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .contact-card .label {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .contact-card .value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    color: var(--faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  [data-lang-block] { display: none; }
+  [data-lang-block].active { display: block; }
+
+  @media (max-width: 560px) {
+    nav.toc ol { grid-template-columns: 1fr; }
+    .page { padding: 40px 18px 72px; }
+    .contact-card { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    section.clause, .contact-card { transition: opacity 0.2s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="brand-row">
+      <div class="mark" aria-hidden="true"></div>
+      <div class="brand-name">Kareyo</div>
+    </div>
+    <h1>Gizlilik Politikası</h1>
+    <p class="lede" data-lang-block data-lang="tr">
+      Kısa hikaye: hiçbir verini toplamıyoruz, çünkü hiçbir yere göndermiyoruz. Fotoğrafların,
+      ilerlemen ve ayarların sadece senin cihazında kalıyor.
+    </p>
+    <p class="lede" data-lang-block data-lang="en">
+      The short version: we don't collect your data, because we never send it anywhere. Your
+      photos, progress, and settings stay on your own device.
+    </p>
+    <div class="meta-row">
+      <span>Son güncelleme: 19 Ağustos 2026</span>
+      <span class="dot"></span>
+      <span>Sürüm 1.0</span>
+      <span class="dot"></span>
+      <div class="lang-toggle" role="group" aria-label="Dil / Language">
+        <button type="button" data-lang-btn="tr" aria-pressed="true">TR</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="İçindekiler">
+    <div class="toc-label" data-lang-block data-lang="tr">İçindekiler</div>
+    <div class="toc-label" data-lang-block data-lang="en">Contents</div>
+    <ol>
+      <li><a href="#genel-bakis"><span>01</span><span data-lang-block data-lang="tr">Genel Bakış</span><span data-lang-block data-lang="en">Overview</span></a></li>
+      <li><a href="#veri-tablosu"><span>02</span><span data-lang-block data-lang="tr">Hangi Veriye Erişiyoruz</span><span data-lang-block data-lang="en">What We Access</span></a></li>
+      <li><a href="#kamera-galeri"><span>03</span><span data-lang-block data-lang="tr">Kamera ve Galeri</span><span data-lang-block data-lang="en">Camera &amp; Photos</span></a></li>
+      <li><a href="#bildirimler"><span>04</span><span data-lang-block data-lang="tr">Bildirimler</span><span data-lang-block data-lang="en">Notifications</span></a></li>
+      <li><a href="#satin-alma"><span>05</span><span data-lang-block data-lang="tr">Satın Almalar</span><span data-lang-block data-lang="en">Purchases</span></a></li>
+      <li><a href="#paylasim"><span>06</span><span data-lang-block data-lang="tr">Üçüncü Taraflar</span><span data-lang-block data-lang="en">Third Parties</span></a></li>
+      <li><a href="#cocuklar"><span>07</span><span data-lang-block data-lang="tr">Çocukların Gizliliği</span><span data-lang-block data-lang="en">Children's Privacy</span></a></li>
+      <li><a href="#silme"><span>08</span><span data-lang-block data-lang="tr">Verilerini Silmen</span><span data-lang-block data-lang="en">Deleting Your Data</span></a></li>
+      <li><a href="#degisiklikler"><span>09</span><span data-lang-block data-lang="tr">Politika Değişiklikleri</span><span data-lang-block data-lang="en">Policy Changes</span></a></li>
+      <li><a href="#iletisim"><span>10</span><span data-lang-block data-lang="tr">İletişim</span><span data-lang-block data-lang="en">Contact</span></a></li>
+    </ol>
+  </nav>
+
+  <section class="clause" id="genel-bakis">
+    <h2><span class="num">01</span><span data-lang-block data-lang="tr">Genel Bakış</span><span data-lang-block data-lang="en">Overview</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kareyo, günlük ilerlemeni (kilo, evcil hayvan, bitki, fitness, saç/sakal ya da kendi
+        seçtiğin herhangi bir konu) tek bir fotoğrafla takip etmeni ve bunları zamanla bir
+        timelapse videosuna dönüştürmeni sağlayan bir iOS uygulamasıdır.
+      </p>
+      <p>
+        Kareyo'nun tasarım ilkesi basit: her şey senin cihazında kalır. Uygulamanın kendi sunucusu
+        yok. Çektiğin fotoğraflar, oluşturduğun videolar, streak'in ve ayarların — hiçbiri bize ya
+        da başka birine gönderilmiyor. Bu sayfa, bunun ne anlama geldiğini adım adım açıklıyor.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Kareyo is an iOS app for tracking daily progress — weight, a pet, a plant, fitness,
+        hair/beard, or any custom goal you set — with a single photo a day, later stitched into a
+        timelapse video.
+      </p>
+      <p>
+        Kareyo's design principle is simple: everything stays on your device. The app has no
+        server of its own. The photos you take, the videos you generate, your streak, and your
+        settings are never sent to us or to anyone else. This page walks through exactly what that
+        means.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="veri-tablosu">
+    <h2><span class="num">02</span><span data-lang-block data-lang="tr">Hangi Veriye Erişiyoruz</span><span data-lang-block data-lang="en">What We Access</span></h2>
+    <p class="muted-note" data-lang-block data-lang="tr">
+      Aşağıdaki her satır, uygulamanın eriştiği bir izin ya da veri türünü ve bununla ne yaptığımızı
+      gösteriyor. "Cihazdan çıkar mı?" sütunu her zaman "Hayır" — bu, bu sayfanın özeti.
+    </p>
+    <p class="muted-note" data-lang-block data-lang="en">
+      Each row below is a permission or data type the app touches, and what we do with it. The
+      "Leaves device?" column always reads "No" — that's the summary of this whole page.
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th data-lang-block data-lang="tr">Veri / İzin</th>
+          <th data-lang-block data-lang="en">Data / Permission</th>
+          <th data-lang-block data-lang="tr">Ne İçin</th>
+          <th data-lang-block data-lang="en">Used For</th>
+          <th data-lang-block data-lang="tr">Cihazdan Çıkar mı?</th>
+          <th data-lang-block data-lang="en">Leaves Device?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span data-lang-block data-lang="tr">Kamera</span>
+            <span data-lang-block data-lang="en">Camera</span>
+          </td>
+          <td>
+            <span data-lang-block data-lang="tr">Günlük ilerleme fotoğrafı çekmek</span>
+            <span data-lang-block data-lang="en">Taking your daily progress photo</span>
+          </td>
+          <td class="status no">
+            <span data-lang-block data-lang="tr">Hayır</span>
+            <span data-lang-block data-lang="en">No</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-block data-lang="tr">Fotoğraflar (sadece ekleme)</span>
+            <span data-lang-block data-lang="en">Photos (add-only)</span>
+          </td>
+          <td>
+            <span data-lang-block data-lang="tr">Oluşturduğun videoyu galerine kaydetmek</span>
+            <span data-lang-block data-lang="en">Saving your finished video to your gallery</span>
+          </td>
+          <td class="status no">
+            <span data-lang-block data-lang="tr">Hayır</span>
+            <span data-lang-block data-lang="en">No</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-block data-lang="tr">Bildirimler</span>
+            <span data-lang-block data-lang="en">Notifications</span>
+          </td>
+          <td>
+            <span data-lang-block data-lang="tr">Günlük hatırlatma (tamamen cihaz üzerinde planlanır)</span>
+            <span data-lang-block data-lang="en">Daily reminder (scheduled entirely on-device)</span>
+          </td>
+          <td class="status no">
+            <span data-lang-block data-lang="tr">Hayır</span>
+            <span data-lang-block data-lang="en">No</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-block data-lang="tr">Uygulama tercihleri</span>
+            <span data-lang-block data-lang="en">App preferences</span>
+          </td>
+          <td>
+            <span data-lang-block data-lang="tr">Görünüm modu, uygulama ikonu, onboarding durumu</span>
+            <span data-lang-block data-lang="en">Appearance mode, app icon choice, onboarding state</span>
+          </td>
+          <td class="status no">
+            <span data-lang-block data-lang="tr">Hayır</span>
+            <span data-lang-block data-lang="en">No</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span data-lang-block data-lang="tr">Satın alma bilgisi</span>
+            <span data-lang-block data-lang="en">Purchase information</span>
+          </td>
+          <td>
+            <span data-lang-block data-lang="tr">Premium kilidini açmak — tamamen Apple üzerinden</span>
+            <span data-lang-block data-lang="en">Unlocking Premium — handled entirely by Apple</span>
+          </td>
+          <td class="status no">
+            <span data-lang-block data-lang="tr">Bize hiç ulaşmaz</span>
+            <span data-lang-block data-lang="en">Never reaches us</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="badge-row">
+      <span class="badge" data-lang-block data-lang="tr">Hesap yok</span>
+      <span class="badge" data-lang-block data-lang="en">No account</span>
+      <span class="badge" data-lang-block data-lang="tr">Takip/analitik yok</span>
+      <span class="badge" data-lang-block data-lang="en">No tracking or analytics</span>
+      <span class="badge" data-lang-block data-lang="tr">Reklam yok</span>
+      <span class="badge" data-lang-block data-lang="en">No ads</span>
+      <span class="badge" data-lang-block data-lang="tr">Sunucu yok</span>
+      <span class="badge" data-lang-block data-lang="en">No server</span>
+    </div>
+  </section>
+
+  <section class="clause" id="kamera-galeri">
+    <h2><span class="num">03</span><span data-lang-block data-lang="tr">Kamera ve Galeri</span><span data-lang-block data-lang="en">Camera &amp; Photos</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kamera izni verdiğinde, çektiğin her fotoğraf uygulamanın kendi özel depolama alanına
+        (cihazının belleğine) kaydedilir. Timelapse videon da tamamen cihazında, cihazının kendi
+        işlemcisi kullanılarak oluşturulur — hiçbir kare, hiçbir video karesi bir sunucuya
+        yüklenmez.
+      </p>
+      <p>
+        Fotoğraflarına "sadece ekleme" izni verdiğinde, uygulama SADECE kendi oluşturduğu videoyu
+        galerine kaydedebilir. Uygulama mevcut fotoğraf galerini okuyamaz ya da tarayamaz.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Once you grant camera access, every photo you take is saved to the app's own private
+        storage on your device. Your timelapse video is also generated entirely on-device, using
+        your device's own processor — no frame, no video, is ever uploaded to a server.
+      </p>
+      <p>
+        When you grant "add-only" Photos access, the app can ONLY save the video it generates into
+        your gallery. It cannot read or browse your existing photo library.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="bildirimler">
+    <h2><span class="num">04</span><span data-lang-block data-lang="tr">Bildirimler</span><span data-lang-block data-lang="en">Notifications</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Günlük hatırlatma bildirimleri tamamen cihazının kendi işletim sistemi tarafından, senin
+        belirlediğin saatte planlanır. Bunun için herhangi bir bildirim sunucusuna (push notification
+        server) bağlanılmaz — bildirim, internete hiç çıkmadan, doğrudan cihazında tetiklenir.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Daily reminder notifications are scheduled entirely by your device's own operating system,
+        at the time you choose. No push notification server is involved — the notification fires
+        locally, without ever touching the internet.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="satin-alma">
+    <h2><span class="num">05</span><span data-lang-block data-lang="tr">Satın Almalar</span><span data-lang-block data-lang="en">Purchases</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kareyo Premium, tek seferlik bir satın almadır ve Apple'ın App Store ödeme altyapısı
+        (StoreKit) üzerinden işlenir. Kart bilgilerin, Apple ID'n ya da ödeme detayların hiçbir
+        zaman Kareyo'ya ya da geliştiricisine ulaşmaz — bu bilgileri sadece Apple işler ve saklar.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Kareyo Premium is a one-time purchase processed entirely through Apple's App Store payment
+        infrastructure (StoreKit). Your card details, Apple ID, or payment information never reach
+        Kareyo or its developer — only Apple ever processes or stores that information.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="paylasim">
+    <h2><span class="num">06</span><span data-lang-block data-lang="tr">Üçüncü Taraflar</span><span data-lang-block data-lang="en">Third Parties</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kareyo hiçbir analiz (analytics), reklam ya da takip SDK'sı kullanmaz. Verilerini kimseyle
+        paylaşmıyoruz, satmıyoruz ya da kiralamıyoruz — çünkü zaten bize hiç ulaşmıyor.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Kareyo uses no analytics, advertising, or tracking SDKs. We don't share, sell, or rent your
+        data to anyone — because it never reaches us in the first place.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="cocuklar">
+    <h2><span class="num">07</span><span data-lang-block data-lang="tr">Çocukların Gizliliği</span><span data-lang-block data-lang="en">Children's Privacy</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kareyo çocuklara yönelik bir uygulama değildir. Zaten hiçbir kullanıcıdan (yaşı ne olursa
+        olsun) veri toplamadığımız için, bu konuda ayrıca bir risk oluşturmuyor.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Kareyo is not directed at children. Since we don't collect data from any user regardless of
+        age, this doesn't introduce a separate risk either way.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="silme">
+    <h2><span class="num">08</span><span data-lang-block data-lang="tr">Verilerini Silmen</span><span data-lang-block data-lang="en">Deleting Your Data</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Tüm verilerin zaten yalnızca senin cihazında olduğu için, silme işlemi tamamen senin
+        kontrolünde:
+      </p>
+      <ul class="plain">
+        <li>Uygulama içinden tek bir değişimi silmek, o değişime ait tüm fotoğrafları ve videoyu kalıcı olarak kaldırır.</li>
+        <li>Kareyo'yu cihazından tamamen kaldırmak (silmek), tüm verilerini kalıcı olarak siler.</li>
+      </ul>
+      <p>Bize ayrıca bir "veri silme talebi" göndermene gerek yok — çünkü zaten elimizde veri yok.</p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        Since all of your data lives only on your device, deletion is entirely in your hands:
+      </p>
+      <ul class="plain">
+        <li>Deleting a single process from within the app permanently removes all photos and video tied to it.</li>
+        <li>Deleting Kareyo from your device permanently erases all of your data.</li>
+      </ul>
+      <p>There's no need to send us a data-deletion request — we don't hold any data to delete.</p>
+    </div>
+  </section>
+
+  <section class="clause" id="degisiklikler">
+    <h2><span class="num">09</span><span data-lang-block data-lang="tr">Politika Değişiklikleri</span><span data-lang-block data-lang="en">Policy Changes</span></h2>
+    <div data-lang-block data-lang="tr">
+      <p>
+        Kareyo'ya yeni bir özellik eklendiğinde (örneğin cihazlar arası senkronizasyon gibi, verinin
+        bu sayfada tarif edilenden farklı davranmasına yol açacak bir özellik), bu sayfa
+        güncellenir ve üstteki "Son güncelleme" tarihi değişir. Önemli bir değişiklik olursa,
+        uygulama içinde de ayrıca bilgilendirileceksin.
+      </p>
+    </div>
+    <div data-lang-block data-lang="en">
+      <p>
+        If Kareyo ever adds a feature that changes how your data behaves from what's described here
+        (for example, cross-device sync), this page will be updated and the "last updated" date
+        above will change. If the change is meaningful, you'll also be notified inside the app.
+      </p>
+    </div>
+  </section>
+
+  <section class="clause" id="iletisim">
+    <h2><span class="num">10</span><span data-lang-block data-lang="tr">İletişim</span><span data-lang-block data-lang="en">Contact</span></h2>
+    <p data-lang-block data-lang="tr">
+      Gizlilikle ilgili bir sorun varsa, doğrudan geliştiriciye ulaşabilirsin:
+    </p>
+    <p data-lang-block data-lang="en">
+      Questions about privacy can go straight to the developer:
+    </p>
+    <div class="contact-card">
+      <span class="label" data-lang-block data-lang="tr">E-posta</span>
+      <span class="label" data-lang-block data-lang="en">Email</span>
+      <a class="value" href="mailto:murathanbyr@gmail.com">murathanbyr@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kareyo — Murathan Bayar</span>
+    <span data-lang-block data-lang="tr">19 Ağustos 2026 itibarıyla geçerlidir</span>
+    <span data-lang-block data-lang="en">Effective as of August 19, 2026</span>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+    function setLang(lang) {
+      document.querySelectorAll('[data-lang-block]').forEach(function (el) {
+        el.classList.toggle('active', el.getAttribute('data-lang') === lang);
+      });
+      buttons.forEach(function (btn) {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-lang-btn') === lang ? 'true' : 'false');
+      });
+      try { localStorage.setItem('kareyo-privacy-lang', lang); } catch (e) {}
+    }
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setLang(btn.getAttribute('data-lang-btn'));
+      });
+    });
+    var initial = 'tr';
+    try {
+      var stored = localStorage.getItem('kareyo-privacy-lang');
+      if (stored === 'tr' || stored === 'en') initial = stored;
+    } catch (e) {}
+    setLang(initial);
+  })();
+</script>
+</body>
+</html>
