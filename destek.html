@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kareyo Destek</title>
+<meta name="description" content="Kareyo hakkında sık sorulan sorular ve iletişim." />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --text: #161b22;
+    --muted: #5b6472;
+    --faint: #8891a0;
+    --border: #e3e6eb;
+    --accent: #2456b8;
+    --accent-soft: #e8eefc;
+    --accent-ink: #17376e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0e14; --surface: #11151e; --text: #eceef2; --muted: #9aa3b2;
+      --faint: #6b7280; --border: #232937; --accent: #6c93e8;
+      --accent-soft: #1a2740; --accent-ink: #cddcff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0e14; --surface: #11151e; --text: #eceef2; --muted: #9aa3b2;
+    --faint: #6b7280; --border: #232937; --accent: #6c93e8;
+    --accent-soft: #1a2740; --accent-ink: #cddcff;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  .page { max-width: 700px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  header.hero { display: flex; flex-direction: column; gap: 20px; margin-bottom: 44px; }
+  .mark { width: 44px; height: 44px; border-radius: 50%; background: var(--accent); position: relative; flex: none; }
+  .mark::before { content: ""; position: absolute; inset: 8px; border-radius: 50%; background: var(--surface); }
+  .mark::after { content: ""; position: absolute; inset: 14px; border-radius: 50%; background: var(--accent-ink); opacity: 0.85; }
+  .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .brand-left { display: flex; align-items: center; gap: 14px; }
+  .brand-name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.01em; }
+  .nav-link {
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: 13.5px;
+    text-decoration: none; color: var(--muted); border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 999px;
+  }
+  .nav-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  h1 {
+    font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(30px, 5vw, 40px);
+    line-height: 1.12; letter-spacing: -0.015em; margin: 0; text-wrap: balance;
+  }
+  .lede { font-size: 18px; color: var(--muted); max-width: 60ch; }
+
+  section.clause { padding-top: 40px; border-top: 1px solid var(--border); scroll-margin-top: 24px; }
+  section.clause:first-of-type { border-top: none; }
+  h2 {
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 21px;
+    letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  section.clause p { margin: 0 0 14px; color: var(--text); }
+  section.clause p:last-child { margin-bottom: 0; }
+
+  .faq-item { margin-bottom: 28px; }
+  .faq-item:last-child { margin-bottom: 0; }
+  .faq-q {
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 17px;
+    margin: 0 0 8px; display: flex; gap: 10px; align-items: baseline;
+  }
+  .faq-q .q-mark { color: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
+  .faq-a { color: var(--muted); font-size: 16px; margin: 0; padding-left: 26px; }
+
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 26px 28px; margin-top: 8px; display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .contact-card .label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 15px; }
+  .contact-card .value { font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: var(--accent); text-decoration: none; }
+
+  footer {
+    margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border);
+    font-family: 'Sora', sans-serif; font-size: 13px; color: var(--faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  }
+
+  @media (max-width: 560px) {
+    .page { padding: 40px 18px 72px; }
+    .contact-card { flex-direction: column; align-items: flex-start; }
+    .brand-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="brand-row">
+      <div class="brand-left">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="brand-name">Kareyo</div>
+      </div>
+      <a class="nav-link" href="./">Gizlilik Politikası</a>
+    </div>
+    <h1>Destek</h1>
+    <p class="lede">
+      Sık sorulan sorular aşağıda. Aradığını bulamazsan, en altta doğrudan bize yazabilirsin.
+    </p>
+  </header>
+
+  <section class="clause">
+    <h2>Sık Sorulan Sorular</h2>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Fotoğraflarım ve videolarım nerede saklanıyor?</p>
+      <p class="faq-a">Tamamen kendi cihazında. Kareyo'nun hiçbir sunucusu yok — hiçbir fotoğraf ya da video internete yüklenmiyor. Daha fazla ayrıntı için <a href="./">gizlilik politikamıza</a> bakabilirsin.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Bir günü kaçırırsam ne olur?</p>
+      <p class="faq-a">Her değişimde bir kez kullanılabilen bir "kaçırma hakkın" var — ilk kaçırdığın gün streak'ini bozmaz. İkinci kez (ve art arda) kaçırırsan değişim bozulur ve sıfırdan başlaman gerekir.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Günlük hatırlatma bildirimi almıyorum, ne yapmalıyım?</p>
+      <p class="faq-a">Ayarlar → Bildirimler → Kareyo yolundan bildirim izninin açık olduğundan emin ol. Uygulama içindeki Ayarlar ekranından da "Bildirim İzinlerini Yönet" ile doğrudan oraya gidebilirsin.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Kareyo Premium ne içeriyor?</p>
+      <p class="faq-a">Aynı anda birden fazla değişim takibi, hedefe ulaştıktan sonra sınırsız devam, filigransız video, kendi müziğini ekleme, istatistikler ve alternatif uygulama ikonları. Tek seferlik bir satın alma — abonelik yok.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Satın alımımı nasıl geri yüklerim?</p>
+      <p class="faq-a">Ayarlar → Premium ekranındaki "Satın Alımları Geri Yükle" düğmesine dokun. Apple ID'nle daha önce satın aldıysan otomatik olarak tanınır, tekrar ödeme yapmana gerek yoktur.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Bir değişimi ya da tüm verilerimi nasıl silerim?</p>
+      <p class="faq-a">Tek bir değişimi silmek için değişim ekranındaki "..." menüsünden "Değişimi Sil"i kullan. Tüm verilerini silmek için Kareyo'yu cihazından kaldırman yeterli — hiçbir yerde başka bir kopya kalmaz.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q"><span class="q-mark">S</span>Videomun oranını ya da hızını değiştirebilir miyim?</p>
+      <p class="faq-a">Evet — video hazır olduktan sonra Story (9:16), 4:5 ya da Kare (1:1) oranları ile Yavaş'tan Çok Hızlı'ya dört farklı hız arasında geçiş yapabilirsin, hepsi ücretsiz.</p>
+    </div>
+  </section>
+
+  <section class="clause">
+    <h2>Hâlâ Yardıma mı İhtiyacın Var?</h2>
+    <p>Yukarıda cevabını bulamadığın bir sorun varsa, doğrudan geliştiriciye ulaşabilirsin:</p>
+    <div class="contact-card">
+      <span class="label">E-posta</span>
+      <a class="value" href="mailto:murathanbyr@gmail.com">murathanbyr@gmail.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kareyo — Murathan Bayar</span>
+    <a href="./" style="color: inherit;">Gizlilik Politikası</a>
+  </footer>
+</div>
+</body>
+</html>
